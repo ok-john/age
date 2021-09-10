@@ -1,0 +1,24 @@
+name: age-cli
+version: 'v1.0+git'
+summary: age is a simple, modern and secure file encryption tool, format, and Go library. 
+description: |
+    age is a simple, modern and secure file encryption tool, format, and Go library.
+    It features small explicit keys, no config options, and UNIX-style composability.      
+    The format specification is at [age-encryption.org/v1](https://age-encryption.org/v1). 
+    age was designed by [@Benjojo12](https://twitter.com/Benjojo12) and [@FiloSottile](https://twitter.com/FiloSottile).
+    The author pronounces it `[aɡe̞]`, like the Italian [“aghe”](https://translate.google.com/?sl=it&text=aghe).
+    For the full documentation, read [the age(1) man page](https://filippo.io/age/age.1).
+compression: lzo
+confinement: strict
+base: core20
+parts:
+  libfcat-build:
+    plugin: make
+    build-snaps: [go]
+    source: .
+    build-packages: [gcc, make]
+    stage-packages: [gcc, make]
+    make-parameters: []
+apps:
+  age:
+    command: ./age

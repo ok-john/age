@@ -1,10 +1,11 @@
 SHELL := /bin/bash
 OUT := bin
 VERSION := v1.0.0+git
-DESTDIR := ./
 ARTIFACTS := age age-keygen
 SUFFIX := cli
-NAME := age-$(SUFFIX)
+# DESTDIR gets set by the snapcraft build process.
+# The value you here will be used for local builds.
+DESTDIR := ./
 
 default :: build
 
@@ -21,4 +22,4 @@ install :: rename
 		$(shell mv $(OUT)/* $(DESTDIR))
 
 clean ::
-		$(RM) $(NAME) $(OUT)
+		$(RM) $(OUT)

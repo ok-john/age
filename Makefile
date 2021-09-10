@@ -18,7 +18,7 @@ rename :: build
 		for n in $(ARTIFACTS); do mv $(OUT)/$$n $(OUT)/$$n-$(SUFFIX); done
 
 install :: rename
-    	$(shell mv $(OUT)/* $(DESTDIR))
+		$(shell mv $(OUT)/* $(DESTDIR))
 
 clean ::
 		$(RM) $(NAME) $(OUT)

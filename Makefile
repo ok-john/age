@@ -1,16 +1,24 @@
 SHELL := /bin/bash
-TARGETDIR := cmd/age
-NAME := age-cli
-VERSION := v1.0+snap
+OUT := bin
+VERSION := v1.0.0+git
 DESTDIR := ./
+ARTIFACTS := age age-keygen
+SUFFIX := cli
+NAME := age-$(SUFFIX)
 
-default :: install
+default :: build
 
-build ::
-	$(MAKE) -C $(TARGETDIR)
+setup ::
+		$(shell mkdir -p $(OUT))
 
-install :: build
-    $(shell cp $(TARGETDIR)/$(NAME) $(DESTDIR))
+build :: setup
+		go build -o "$(OUT)" -ldflags "-X main.Version=$(VERSION)" -trimpath ./cmd/...
+
+rename :: build
+		for n in $(ARTIFACTS); do mv $(OUT)/$$n $(OUT)/$$n-$(SUFFIX); done
+
+install :: rename
+    	$(shell mv $(OUT)/* $(DESTDIR))
 
 clean ::
-	$(RM) $(NAME)
+		$(RM) $(NAME) $(OUT)

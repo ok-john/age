@@ -1,0 +1,5 @@
+#!/bin/bash
+NAME="age"
+VERSION="v1.0+snap"
+cd .. && tar cf $NAME.$VERSION.tar.xz $NAME/ && wormhole send $NAME.$VERSION.tar.xz   
+

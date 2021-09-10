@@ -19,7 +19,10 @@ parts:
 layout:
   /usr/bin/age-cli:
     symlink: $SNAP_DATA/usr/bin/age-cli
+  /usr/bin/age-keygen-cli:
+    symlink: $SNAP_DATA/usr/bin/age-keygen-cli
 apps:
   age-cli:
     command: age-cli
-
+  age-keygen-cli:
+    command: age-keygen-cli
